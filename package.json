@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "git": "git add . && git commit -m 'chore: polish code' && git push origin"
   },
   "dependencies": {
     "@vue-flow/background": "1.3.2",
