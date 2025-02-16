@@ -19,7 +19,7 @@ const state = reactive({
     flowFlag: Date.now(),
     nodes: [] as any,
     edges: [] as any,
-    dbmlContent: '' + erdStore.dbmlRaw
+    dbmlContent: ''
 });
 
 const saveDbml = () => {
@@ -42,6 +42,7 @@ const createVueFlowData = (dbmlRaw: String) => {
 };
 
 const initFlowData = () => {
+    state.dbmlContent = erdStore.dbmlRaw
     const db = createVueFlowData(erdStore.dbmlRaw);
     const { nodes, edges } = convertor.convertDbmlStructToVueFlowObj(db);
     state.nodes = nodes;
@@ -49,6 +50,7 @@ const initFlowData = () => {
     erdStore.applyExtraData(nodes, edges);
     state.flowFlag = Date.now();
 };
+
 initFlowData();
 </script>
 
@@ -68,7 +70,7 @@ initFlowData();
             />
             <div class="panel-btns">
                 <button @click="saveDbml" class="primary">Save</button>
-                <button @click="saveDbml" class="secondary">Load</button>
+                <button @click="initFlowData" class="secondary">Load</button>
             </div>
         </div>
         <div class="content comp-layer f-col">
