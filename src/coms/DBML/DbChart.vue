@@ -130,8 +130,10 @@ onNodesInitialized(() => {
     cursor: pointer;
     padding: 5px 10px;
     background-color: #fff;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    box-shadow: 0 0 1px 1px #0003;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0.8;
 }
 
 .vue-flow__edge-path {
