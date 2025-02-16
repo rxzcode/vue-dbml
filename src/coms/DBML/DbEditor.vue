@@ -9,7 +9,6 @@ import convertor, { parseDBMLToJSON } from './libs/convertor';
 import '@vue-flow/core/dist/style.css';
 import '@vue-flow/core/dist/theme-default.css';
 import '@vue-flow/controls/dist/style.css';
-import '@/assets/css/simple-line-icons.css';
 
 import './libs/css/styles.css';
 import './libs/ace-config';
