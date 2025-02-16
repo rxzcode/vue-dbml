@@ -1,8 +1,11 @@
 # My Vue.js Project
 
-![Project Screenshot](./public/screenshot.png)
+![Project Screenshot](public/screenshot.png)
 
-A modern Vue.js application powered by Vite for lightning-fast development and builds.
+A Simplize and opensource version of dbdiagram.io with features:
+- DBML edit and save
+- DBML render with vue-flow
+- Autolayout with dagre - LR index
 
 ## Features
 
