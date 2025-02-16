@@ -30,4 +30,4 @@ import workerYamlUrl from 'ace-builds/src-noconflict/worker-yaml?url';
 ace.config.setModuleUrl('ace/mode/yaml_worker', workerYamlUrl);
 
 import 'ace-builds/src-noconflict/ext-language_tools';
-ace.require('ace/ext/language_tools');
+(ace as any).require('ace/ext/language_tools');
