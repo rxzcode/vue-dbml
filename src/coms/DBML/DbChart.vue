@@ -2,7 +2,6 @@
 import dagre from 'dagre';
 import { VueFlow, useVueFlow, ConnectionMode } from '@vue-flow/core';
 import { ControlButton, Controls } from '@vue-flow/controls';
-import { Background } from '@vue-flow/background';
 import { MiniMap } from '@vue-flow/minimap';
 
 import { useErdStore } from './libs/state';
@@ -25,9 +24,6 @@ const props = defineProps({
 });
 
 const store = useErdStore();
-
-// https://vueflow.dev/guide/vue-flow/config.html#global-edge-options
-// https://reactflow.dev/docs/api/react-flow-props/
 let { edges, nodes, fitView, onNodesInitialized, panOnDrag, panOnScroll, panOnScrollSpeed } = useVueFlow({
     onlyRenderVisibleElements: false, // in the DOM only what is visible on the screen
     disableKeyboardA11y: false,
@@ -103,23 +99,12 @@ onNodesInitialized(() => {
         <div @click="autoLayout" class="control-btn">Auto Layout</div>
     </div>
     <VueFlow class="erd" :nodes="nodes" :edges="edges">
-        <Controls :position="'bottom-left' as any" v-slot:top >
-            <ControlButton @click="fullscreen">
-                <i class="icon-size-fullscreen" />
-            </ControlButton>
+        <Controls position="bottom-left" v-slot:top>
+            <ControlButton @click="fullscreen"><i class="icon-size-fullscreen"></i></ControlButton>
         </Controls>
-
-        <Background :variant="'lines' as any" pattern-color="'rgb(79 137 224 / 0.2)'" :gap="40" :size="0.5" />
         <MiniMap nodeColor="#17d8b8" nodeStrokeColor="#333" :pannable="true" :zoomable="true" />
-
-        <template #node-group="node">
-            <DbGroup :group="node" />
-        </template>
-
-        <template #node-table="node">
-            <DbTable :table="node as any" />
-        </template>
-
+        <template #node-group="node"><DbGroup :group="node" /></template>
+        <template #node-table="node"><DbTable :table="node" /></template>
         <template #connection-line="connectionLineProps">
             <CustomConnectionLine v-bind="connectionLineProps" />
         </template>

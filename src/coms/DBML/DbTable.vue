@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { Handle, Position } from '@vue-flow/core';
-import { GraphNode } from '@vue-flow/core';
+import { Handle, NodeProps, Position } from '@vue-flow/core';
 import { useErdStore } from './libs/state';
 
 const store = useErdStore();
 defineProps<{
-    table: GraphNode;
+    table: NodeProps<any, {}, string>;
 }>();
 </script>
 
@@ -56,7 +55,7 @@ defineProps<{
 .db-table .title {
     padding: 4px 8px;
     font-size: 14px;
-    background: #316896;
+    background: #3F51B5;
     color: #f3f3f3;
     font-weight: bold;
     cursor: move;
