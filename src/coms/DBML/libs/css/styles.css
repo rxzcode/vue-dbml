@@ -37,7 +37,7 @@ body,
     justify-content: start;
     font-size: 14px;
     font-weight: 100;
-    gap: 10px;
+    gap: 15px;
 }
 #app header .logo {
     color: #fff;
@@ -54,6 +54,10 @@ body,
 }
 #app header .menu {
     cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #app header i {
     font-size: x-small;
