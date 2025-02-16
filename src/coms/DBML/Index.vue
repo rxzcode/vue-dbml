@@ -147,13 +147,6 @@ onNodesInitialized(() => {
     border-radius: 8px;
 }
 
-.erd {
-    min-height: 94vh;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background: #fff;
-}
-
 .vue-flow__edge-path {
     stroke: #7cadd5;
 }

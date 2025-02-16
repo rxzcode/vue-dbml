@@ -78,8 +78,8 @@ initFlowData();
                 }"
             />
             <div class="panel-btns">
-                <button @click="saveDbml" variant="primary">Save</button>
-                <button @click="saveDbml" variant="secondary">Load</button>
+                <button @click="saveDbml" class="primary">Save</button>
+                <button @click="saveDbml" class="secondary">Load</button>
             </div>
         </div>
         <div class="content comp-layer f-col">
@@ -111,13 +111,15 @@ initFlowData();
     padding: 5px;
     gap: 5px;
     width: 100%;
-    background-color: #fff;
+    background-color: #202020;
 }
 
 .dbml-editor,
 .yaml-editor {
     width: 100%;
-    height: 500px;
-    max-height: 80%;
+    height: 100%;
+}
+#erd-container {
+    flex-grow: 1;
 }
 </style>

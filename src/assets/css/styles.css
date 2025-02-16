@@ -11,6 +11,10 @@
     will-change: transform;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html,
 body,
 #app {
@@ -72,4 +76,22 @@ body,
     bottom: 0;
     overflow-y: scroll;
     position: absolute;
+}
+
+button {
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: #000;
+    letter-spacing: 1px;
+}
+.primary {
+    background-color: #3F51B5;
+    color: #fff;
+}
+
+.secondary {
+    background-color: #2196F3;
+    color: #fff;
 }
