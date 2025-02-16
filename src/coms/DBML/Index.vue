@@ -1,13 +1,9 @@
 <script setup lang="ts">
-// @ts-nocheck
-import { ref, Ref, inject, watch } from 'vue';
 import dagre from 'dagre';
-import { VueFlow, useVueFlow, ConnectionMode } from '@vue-flow/core';
+import { VueFlow, useVueFlow, ConnectionMode, PanelPosition } from '@vue-flow/core';
 import { ControlButton, Controls } from '@vue-flow/controls';
-import { Background } from '@vue-flow/background';
+import { Background, BackgroundVariant } from '@vue-flow/background';
 import { MiniMap } from '@vue-flow/minimap';
-import { GraphNode } from '@vue-flow/core';
-import { debounce } from '@/libs/utils';
 import { useErdStore } from '@/libs/store/ERD';
 
 import DbTable from './DbTable.vue';
@@ -16,7 +12,6 @@ import CustomEdge from './CustomEdge.vue';
 
 import '@vue-flow/controls/dist/style.css';
 
-const store = useErdStore();
 const props = defineProps({
     initialNodes: {
         type: Array,
@@ -28,33 +23,11 @@ const props = defineProps({
     }
 });
 
-let isScrollPane: Ref<boolean> = ref(false);
-const erdElement = ref('');
-const state = inject('state');
+const store = useErdStore();
 
 // https://vueflow.dev/guide/vue-flow/config.html#global-edge-options
 // https://reactflow.dev/docs/api/react-flow-props/
-let {
-    edges,
-    nodes,
-    fitView,
-    onNodeDragStop,
-    onConnect,
-    addEdges,
-    onEdgeUpdate,
-    updateEdge,
-    autoConnect,
-    updateNodePositions,
-    onNodeMouseEnter,
-    onNodeMouseLeave,
-    onEdgeMouseEnter,
-    onNodesInitialized,
-    onPaneScroll,
-    onNodeDoubleClick,
-    panOnDrag,
-    panOnScroll,
-    panOnScrollSpeed
-} = useVueFlow({
+let { edges, nodes, fitView, onNodesInitialized, panOnDrag, panOnScroll, panOnScrollSpeed } = useVueFlow({
     onlyRenderVisibleElements: false, // in the DOM only what is visible on the screen
     disableKeyboardA11y: false,
     zoomOnScroll: false,
@@ -99,6 +72,7 @@ const autoLayout = () => {
 };
 
 store.$patch({
+    // @ts-ignore
     tables: nodes,
     edges: edges,
     settings: {
@@ -110,17 +84,6 @@ store.$patch({
     }
 });
 
-const paneScrollHandler = debounce(
-    function () {
-        isScrollPane.value = true;
-    },
-    2000,
-    true,
-    () => {
-        isScrollPane.value = false;
-    }
-);
-
 const fullscreen = function () {
     if (!document.fullscreenElement) {
         document.querySelector('#erd-container')?.requestFullscreen();
@@ -129,38 +92,26 @@ const fullscreen = function () {
     }
 };
 
-onPaneScroll(() => {});
-
 onNodesInitialized(() => {
     autoLayout();
 });
-
-onNodeMouseEnter(({ connectedEdges, event, node }) => {});
-
-onNodeMouseLeave(({ connectedEdges, event, node }) => {});
-
-onNodeDoubleClick(({ event, node }) => {});
-
-onConnect((params) => {});
-
-onEdgeUpdate(({ edge, connection }) => {});
 </script>
 
 <template>
     <div class="control-panel">
         <div @click="autoLayout" class="control-btn">Auto Layout</div>
     </div>
-    <VueFlow ref="erdElement" class="erd" :class="{ isScrollPane }" :nodes="nodes" :edges="edges">
-        <Controls position="bottom-left" v-slot:top>
+    <VueFlow class="erd" :nodes="nodes" :edges="edges">
+        <Controls :position="'bottom-left' as PanelPosition" v-slot:top>
             <ControlButton @click="fullscreen"><i class="icon-size-fullscreen" /></ControlButton>
         </Controls>
-        <Background variant="lines" pattern-color="'rgb(79 137 224 / 0.2)''" gap="{40}" size="{0.5}" />
+        <Background :variant="'lines' as BackgroundVariant" pattern-color="'rgb(79 137 224 / 0.2)''" :gap="40" :size="0.5" />
         <MiniMap nodeColor="#17d8b8" nodeStrokeColor="#333" :pannable="true" :zoomable="true" />
         <template #node-group="node">
             <DbGroup :group="node" />
         </template>
         <template #node-table="node">
-            <DbTable :class="{ isScrollPane }" :table="node" />
+            <DbTable :table="node as any" />
         </template>
         <template #edge-custom_edge_1="props">
             <CustomEdge v-bind="props" />

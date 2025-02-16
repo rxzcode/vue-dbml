@@ -1,9 +1,8 @@
-import { RawDatabase } from '@dbml/core/types/model_structure/database';
 import { Edge, Node } from '@vue-flow/core/dist/types';
 import Table from '@dbml/core/types/model_structure/table';
 import Ref from '@dbml/core/types/model_structure/ref';
 import Endpoint from '@dbml/core/types/model_structure/endpoint';
-
+import { RawDatabase } from '@dbml/core/types/model_structure/database';
 export { default as parseDBMLToJSON } from '@dbml/core/lib/parse/dbmlParser';
 
 class ConvertorToVueFlow {
@@ -84,7 +83,7 @@ class ConvertorToVueFlow {
         db.refs.map((ref) => {
             ref.endpoints.map((endpoint: Endpoint) => {
                 const name = endpoint.tableName;
-                const alias = db.aliases.find((item) => item.kind === 'table' && item.name === name);
+                const alias = (db as any).aliases.find((item: any) => item.kind === 'table' && item.name === name);
                 if (alias) {
                     endpoint.tableName = alias.value.tableName;
                 }

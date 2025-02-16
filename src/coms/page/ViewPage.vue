@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { reactive, provide } from 'vue';
-import DBML from '@/components/DBML/Index.vue';
-import convertor, { parseDBMLToJSON } from '@/components/DBML/dbml-convertor';
 import yaml from 'js-yaml';
-import { useErdStore } from '@/libs/store/ERD';
 import { VAceEditor } from 'vue3-ace-editor';
-VAceEditor.name = 'AceEditor';
-import '@/libs/ace/ace-config.js';
+
+import { useErdStore } from '@/libs/store/ERD';
+import DBML from '@/coms/DBML/Index.vue';
+import convertor, { parseDBMLToJSON } from '@/coms/DBML/dbml-convertor';
 
 const erdStore = useErdStore();
 const state = reactive({
@@ -62,7 +61,6 @@ const initFlowData = () => {
     state.flowFlag = Date.now();
 };
 initFlowData();
-provide('state', state);
 </script>
 
 <template>
@@ -79,7 +77,6 @@ provide('state', state);
                     enableLiveAutocompletion: true
                 }"
             />
-
             <div class="panel-btns">
                 <button @click="saveDbml" variant="primary">Save</button>
                 <button @click="saveDbml" variant="secondary">Load</button>

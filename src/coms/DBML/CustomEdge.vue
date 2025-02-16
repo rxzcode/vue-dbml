@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
 export default {
     inheritAttrs: false
 };
 </script>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
-import { getSmoothStepPath, BaseEdge } from '@vue-flow/core';
+import { getSmoothStepPath, BaseEdge, Position } from '@vue-flow/core';
 import { useErdStore } from '@/libs/store/ERD';
 
 const store = useErdStore();
@@ -55,8 +55,7 @@ let props = defineProps({
 
 const socketW = 10;
 let state = computed(() => {
-    let edge = store.edges.find((e) => e.id === props.id);
-
+    let edge = store.edges.find((e) => e.id === props.id) as any;
     const sourceIsLeft = props.sourceX > props.targetX;
     const sourceXCompensation = sourceIsLeft ? -edge.sourceNode.dimensions.width / 2 : edge.sourceNode.dimensions.width / 2 + socketW;
     const targetXCompensation = sourceIsLeft ? edge.targetNode.dimensions.width / 2 + socketW : -edge.targetNode.dimensions.width / 2;
@@ -64,8 +63,8 @@ let state = computed(() => {
     const path = getSmoothStepPath({
         ...props,
         offset: 4,
-        sourcePosition: sourceIsLeft ? 'left' : 'right',
-        targetPosition: sourceIsLeft ? 'right' : 'left',
+        sourcePosition: (sourceIsLeft ? 'left' : 'right') as Position,
+        targetPosition: (sourceIsLeft ? 'right' : 'left') as Position,
         sourceX: props.sourceX + sourceXCompensation,
         targetX: props.targetX + targetXCompensation
     });
