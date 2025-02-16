@@ -11,7 +11,7 @@
   "dependencies": {
     "@vue-flow/background": "1.3.2",
     "@vue-flow/controls": "1.1.2",
-    "@vue-flow/core": "1.32.0",
+    "@vue-flow/core": "1.21.0",
     "@vue-flow/minimap": "1.5.2",
     "@dbml/core": "2.5.3",
     "@popperjs/core": "^2.11",

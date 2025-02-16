@@ -262,12 +262,12 @@
   resolved "https://registry.yarnpkg.com/@vue-flow/controls/-/controls-1.1.2.tgz#d71899ed793f741400d043efdd49765a3a94c75f"
   integrity sha512-6dtl/JnwDBNau5h3pDBdOCK6tdxiVAOL3cyruRL61gItwq5E97Hmjmj2BIIqX2p7gU1ENg3z80Z4zlu58fGlsg==
 
-"@vue-flow/core@8.3.1":
-  version "1.32.0"
-  resolved "https://registry.yarnpkg.com/@vue-flow/core/-/core-1.32.0.tgz#21a9e2cb7843e228210e8793f3b66775fa6a9aeb"
-  integrity sha512-srr7JLG1ESWyO88E2gZVg6kTN3+ofCOEiJFJP2UZXdvO9VRdIYppOgxBPi110dKKxapQD9iC6gVLJeedyj/YCA==
+"@vue-flow/core@1.21.0":
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/@vue-flow/core/-/core-1.21.0.tgz#8d68dd174d22ce08bdf26d7dee2f37fe6ec521e9"
+  integrity sha512-rnt/ga+Krso66uCyo6bW1/8Gvh9BoDW36i1SNPZU6OEn8NCPE8RqPsaXVNP2cO2eDzJTGcojLjLlqMm9y4ItTA==
   dependencies:
-    "@vueuse/core" "^10.5.0"
+    "@vueuse/core" "^10.1.2"
     d3-drag "^3.0.0"
     d3-selection "^3.0.0"
     d3-zoom "^3.0.0"
@@ -380,7 +380,7 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.5.13.tgz#87b309a6379c22b926e696893237826f64339b6f"
   integrity sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==
 
-"@vueuse/core@^10.5.0":
+"@vueuse/core@^10.1.2":
   version "10.11.1"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.11.1.tgz#15d2c0b6448d2212235b23a7ba29c27173e0c2c6"
   integrity sha512-guoy26JQktXPcz+0n3GukWIy/JDNKti9v6VEMu6kV2sYBsWuGiTU8OWdg+ADfUbHg3/3DlqySDe7JmdHrktiww==

@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { onUpdated } from 'vue';
 
 let { sourceX, sourceY, targetX, targetY } = defineProps({
