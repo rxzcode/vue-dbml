@@ -14,6 +14,15 @@ import '@/assets/css/simple-line-icons.css';
 import './libs/css/styles.css';
 import './libs/ace-config';
 
+const erdDefault = `
+Table user {
+    id integer [primary key]
+    username varchar
+    role_id varchar
+    created_at timestamp
+    updated_at timestamp
+}
+`
 const erdStore = useErdStore();
 const state = reactive({
     flowFlag: Date.now(),
@@ -37,13 +46,15 @@ const createVueFlowData = (dbmlRaw: String) => {
     try {
         return parseDBMLToJSON.parse(dbmlRaw);
     } catch (e) {
-        console.error('Can`t parse dbml', e);
+        alert('Can`t parse dbml.');
+        erdStore.saveDbmlRaw(erdDefault)
+        return parseDBMLToJSON.parse(erdDefault)
     }
 };
 
 const initFlowData = () => {
-    state.dbmlContent = erdStore.dbmlRaw
     const db = createVueFlowData(erdStore.dbmlRaw);
+    state.dbmlContent = erdStore.dbmlRaw
     const { nodes, edges } = convertor.convertDbmlStructToVueFlowObj(db);
     state.nodes = nodes;
     state.edges = edges;

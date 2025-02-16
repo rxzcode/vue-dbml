@@ -53,11 +53,14 @@ class ConvertorToVueFlow {
         this.replaceTableNameFromAlias(db);
         const nodes = [];
         const edges = [];
-        for (const table of db.tables) {
-            nodes.push(this.convertTable(table));
-        }
-        for (let i = 0; i < db.refs.length; i++) {
-            edges.push(this.convertRefs(db.refs[i], i));
+        try {
+            for (const table of db.tables) {
+                nodes.push(this.convertTable(table));
+            }
+            for (let i = 0; i < db.refs.length; i++) {
+                edges.push(this.convertRefs(db.refs[i], i));
+            }
+        } catch (e) {
         }
         return { nodes, edges };
     }
@@ -79,15 +82,18 @@ class ConvertorToVueFlow {
     }
 
     private replaceTableNameFromAlias(db: RawDatabase): void {
-        db.refs.map((ref) => {
-            ref.endpoints.map((endpoint: Endpoint) => {
-                const name = endpoint.tableName;
-                const alias = (db as any).aliases.find((item: any) => item.kind === 'table' && item.name === name);
-                if (alias) {
-                    endpoint.tableName = alias.value.tableName;
-                }
+        try {
+            db.refs.map((ref) => {
+                ref.endpoints.map((endpoint: Endpoint) => {
+                    const name = endpoint.tableName;
+                    const alias = (db as any).aliases.find((item: any) => item.kind === 'table' && item.name === name);
+                    if (alias) {
+                        endpoint.tableName = alias.value.tableName;
+                    }
+                });
             });
-        });
+        } catch (e) {
+        }
     }
 }
 
