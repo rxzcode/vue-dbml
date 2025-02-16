@@ -12,8 +12,11 @@ A simplified and open-source alternative to **dbdiagram.io**, offering powerful 
 ---
 
 ## Todo
-- Publish vue-dbml component package
-- Download: DBML, sqlite, sql
+- [x] Download: DBML, sqlite, sql
+- [x] Save to localstorage
+- [x] Load from localstorage
+- [ ] Multiple dbml
+- [ ] Publish vue-dbml component package
 
 ---
 

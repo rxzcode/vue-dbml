@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 import { Edge, Node, GraphNode, GraphEdge } from '@vue-flow/core/dist/types';
 import { mergeWith } from 'lodash-es';
+import { exporter } from '@dbml/core';
+import { Sql2Sqlite } from './convertor';
 import dbml from './example.dbml?raw';
-
 interface ErdState {
     tables: GraphNode[];
     edges: GraphEdge[];
@@ -38,6 +39,14 @@ export const useErdStore = defineStore('ERD', {
         }
     }),
     getters: {
+        DbmlSql(): string {
+            const mysql = exporter.export(this.dbmlRaw, 'mysql');
+            return mysql;
+        },
+        DbmlSqlite(): string {
+            const mysql = exporter.export(this.dbmlRaw, 'mysql');
+            return Sql2Sqlite(mysql);
+        }
     },
     actions: {
         saveDbmlRaw(newDbmlRaw: string): void {
@@ -53,5 +62,5 @@ export const useErdStore = defineStore('ERD', {
                 });
             });
         }
-    },
+    }
 });

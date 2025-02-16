@@ -4,7 +4,6 @@ import Ref from '@dbml/core/types/model_structure/ref';
 import Endpoint from '@dbml/core/types/model_structure/endpoint';
 import { RawDatabase } from '@dbml/core/types/model_structure/database';
 export { default as parseDBMLToJSON } from '@dbml/core/lib/parse/dbmlParser';
-
 class ConvertorToVueFlow {
     private convertTable(dbmlTable: Table): Node {
         const fields = Object.fromEntries(
@@ -94,3 +93,41 @@ class ConvertorToVueFlow {
 
 export default new ConvertorToVueFlow();
 export { ConvertorToVueFlow };
+
+export function Sql2Sqlite(mysqlSchema: string): string {
+    let sqliteSchema = mysqlSchema;
+    // Replace MySQL-specific data types with SQLite-compatible types
+    sqliteSchema = sqliteSchema.replace(/`?varchar\(\d+\)`?/gi, 'TEXT');
+    sqliteSchema = sqliteSchema.replace(/`?int\(\d+\)`?/gi, 'INTEGER');
+    sqliteSchema = sqliteSchema.replace(/`?integer`?/gi, 'INTEGER');
+    sqliteSchema = sqliteSchema.replace(/`?text`?/gi, 'TEXT');
+    sqliteSchema = sqliteSchema.replace(/`?timestamp`?/gi, 'TIMESTAMP');
+    // Remove MySQL-specific comments (e.g., COMMENT '...')
+    sqliteSchema = sqliteSchema.replace(/COMMENT\s*'[^']*'/gi, '');
+    // Remove MySQL-specific column options (e.g., AUTO_INCREMENT, UNSIGNED)
+    sqliteSchema = sqliteSchema.replace(/AUTO_INCREMENT|UNSIGNED/gi, '');
+    // Replace MySQL-specific PRIMARY KEY syntax
+    sqliteSchema = sqliteSchema.replace(/`?PRIMARY KEY`?\s*\(([^)]+)\)/gi, 'PRIMARY KEY ($1)');
+    // Move FOREIGN KEY definitions into CREATE TABLE statements
+    const foreignKeys: Record<string, string[]> = {};
+    sqliteSchema = sqliteSchema.replace(
+        /ALTER TABLE `?([\w_]+)`? ADD FOREIGN KEY \(([^)]+)\) REFERENCES `?([\w_]+)`? \(([^)]+)\);/gi,
+        (_, table, columns, referencedTable, referencedColumns) => {
+            if (!foreignKeys[table]) {
+                foreignKeys[table] = [];
+            }
+            foreignKeys[table].push(`FOREIGN KEY (${columns}) REFERENCES ${referencedTable} (${referencedColumns})`);
+            return '';
+        }
+    );
+    // Insert foreign keys into their respective tables
+    sqliteSchema = sqliteSchema.replace(/CREATE TABLE `?([\w_]+)`? \(([^)]+)\)/gi, (_, table, columns) => {
+        const fkDefs = foreignKeys[table] ? `, ${foreignKeys[table].join(', ')}` : '';
+        return `CREATE TABLE ${table} (${columns}${fkDefs})`;
+    });
+    // Remove any trailing commas from column definitions
+    sqliteSchema = sqliteSchema.replace(/,\s*\)/g, ')');
+    // Normalize table creation syntax
+    sqliteSchema = sqliteSchema.replace(/`/g, '');
+    return sqliteSchema;
+}
