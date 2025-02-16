@@ -10,10 +10,15 @@ A simplified and open-source alternative to **dbdiagram.io**, offering powerful 
 
 ---
 
-## Features
+## Todo
+- Publish vue-dbml component package
+- Download: DBML, sqlite, sql
+
+---
+
+## Tools
 - ⚡ **Fast Development**: Built with [Vite](https://vitejs.dev/) for blazing-fast builds and optimized production workflows.
 - 🛠️ **Component-Based Architecture**: Modular and reusable Vue components ensure maintainability and scalability.
-- 🎨 **Customizable Design**: Tailwind CSS integration for quick and flexible styling.
 - 🚀 **State Management**: Seamless state handling using [Pinia](https://pinia.vuejs.org/) or Vuex.
 - 📦 **Modern Tooling**: Includes ESLint and Prettier to maintain clean, consistent, and error-free code.
 
