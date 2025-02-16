@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Handle, Position } from '@vue-flow/core';
 import { GraphNode } from '@vue-flow/core';
-import { useErdStore } from '@/libs/store/ERD';
+import { useErdStore } from './libs/state';
 
 const store = useErdStore();
 defineProps<{

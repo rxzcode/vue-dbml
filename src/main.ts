@@ -1,24 +1,17 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import { createRouter, createWebHashHistory } from 'vue-router';
-import '@/libs/ace/ace-config';
-
-import '@vue-flow/core/dist/style.css';
-import '@vue-flow/core/dist/theme-default.css';
-import '@vue-flow/controls/dist/style.css';
-import '@/assets/css/simple-line-icons.css';
-import '@/assets/css/styles.css';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const pinia = createPinia();
 import App from './App.vue';
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     strict: true,
     routes: [
         {
             name: 'view-page',
-            path: '/view/',
+            path: '/',
             component: () => import('@/coms/pages/ViewPage.vue')
         },
         {

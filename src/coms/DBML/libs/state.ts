@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { Edge, Node, GraphNode, GraphEdge } from '@vue-flow/core/dist/types';
 import { mergeWith } from 'lodash-es';
-import dbml from '@/assets/example.dbml?raw';
+import dbml from './example.dbml?raw';
 
 interface ErdState {
     tables: GraphNode[];

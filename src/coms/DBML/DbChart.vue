@@ -4,8 +4,8 @@ import { VueFlow, useVueFlow, ConnectionMode } from '@vue-flow/core';
 import { ControlButton, Controls } from '@vue-flow/controls';
 import { Background } from '@vue-flow/background';
 import { MiniMap } from '@vue-flow/minimap';
-import { useErdStore } from '@/libs/store/ERD';
 
+import { useErdStore } from './libs/state';
 import DbTable from './DbTable.vue';
 import DbGroup from './DbGroup.vue';
 import CustomEdge from './CustomEdge.vue';

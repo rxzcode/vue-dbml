@@ -7,7 +7,7 @@ export default {
 <script setup lang="ts">
 import { computed } from 'vue';
 import { getSmoothStepPath, BaseEdge, Position } from '@vue-flow/core';
-import { useErdStore } from '@/libs/store/ERD';
+import { useErdStore } from './libs/state';
 
 const store = useErdStore();
 let props = defineProps({
