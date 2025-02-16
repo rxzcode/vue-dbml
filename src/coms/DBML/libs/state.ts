@@ -18,9 +18,10 @@ interface ErdState {
     };
 }
 
+const DBML_STORAGE_KEY = 'erd-dbml-raw';
 export const useErdStore = defineStore('ERD', {
     state: (): ErdState => ({
-        dbmlRaw: dbml,
+        dbmlRaw: localStorage.getItem(DBML_STORAGE_KEY) || dbml,
         extraData: {
             nodes: {},
             edges: {}
@@ -39,6 +40,10 @@ export const useErdStore = defineStore('ERD', {
     getters: {
     },
     actions: {
+        saveDbmlRaw(newDbmlRaw: string): void {
+            this.dbmlRaw = newDbmlRaw;
+            localStorage.setItem(DBML_STORAGE_KEY, newDbmlRaw);
+        },
         applyExtraData(nodes: Node[], edges: Edge[]): void {
             nodes.forEach((node: Node) => {
                 mergeWith(node, this.extraData.nodes?.[node.id], (destValue, sourceValue, key: String, dest, source, stack: Number) => {
@@ -48,5 +53,5 @@ export const useErdStore = defineStore('ERD', {
                 });
             });
         }
-    }
+    },
 });

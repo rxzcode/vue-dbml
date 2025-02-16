@@ -1,4 +1,4 @@
-// This is demo database not use in real project
+//  This is demo database not use in real project
 Table follow {
     following_user_id integer
     followed_user_id integer

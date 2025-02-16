@@ -29,7 +29,7 @@ const saveDbml = () => {
         alert('Error in DBML. Not saved.');
         throw e;
     }
-    erdStore.dbmlRaw = state.dbmlContent;
+    erdStore.saveDbmlRaw(state.dbmlContent)
     initFlowData();
 };
 
