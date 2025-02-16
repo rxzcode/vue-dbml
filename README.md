@@ -1,6 +1,6 @@
 # DBML VueJS Vue-Flow
 This repo is a part of project that use DBML to auto generate model, api for mikro-orm, expressjs
-[Live Demo](https://vue-dbml.devseason.com)
+- [Live Demo](https://vue-dbml.devseason.com)
 
 ![Project Screenshot](./public/screenshot-img.png)
 
