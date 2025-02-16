@@ -1,0 +1,87 @@
+<script setup lang="ts"></script>
+
+<template>
+    <header class="comp-layer">
+        <span class="logo">DBML</span>
+        <router-link :to="{ name: 'view-page' }">View</router-link>
+    </header>
+    <router-view></router-view>
+</template>
+
+<style>
+:root {
+    --left-panel-width: 500px;
+}
+
+.f-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.comp-layer {
+    will-change: transform;
+}
+
+html,
+body,
+#app {
+    overflow: hidden;
+    margin: 0px;
+}
+
+#app {
+    font-family: 'Open Sans', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+#app header {
+    padding: 5px;
+    background: #3f51b5;
+    color: #ffffff;
+    display: flex;
+    justify-content: start;
+    font-size: 14px;
+    font-weight: 100;
+}
+#app header .logo {
+    color: #fff;
+}
+#app header a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0 12px;
+    border-bottom: 2px solid transparent;
+}
+#app header a:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+#app .middle {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+}
+#app .middle .aside-panel {
+    width: var(--left-panel-width);
+    background: #f7f7f7;
+    border-right: 1px solid #ddd;
+    color: #999;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+#app .middle .content {
+    flex-grow: 1;
+    left: var(--left-panel-width);
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    position: absolute;
+}
+</style>

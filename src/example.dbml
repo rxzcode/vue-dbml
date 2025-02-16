@@ -1,0 +1,25 @@
+Table follow {
+  following_user_id integer
+  followed_user_id integer
+  created_at timestamp
+}
+
+Table user {
+  id integer [primary key]
+  username varchar
+  role varchar
+  created_at timestamp
+}
+
+Table post {
+  id integer [primary key]
+  title varchar
+  body text [note: 'Content of the post']
+  user_id integer
+  status varchar
+  created_at timestamp
+}
+
+Ref: post.user_id > user.id
+Ref: user.id < follow.following_user_id
+Ref: user.id < follow.followed_user_id

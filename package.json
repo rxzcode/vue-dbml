@@ -1,0 +1,39 @@
+{
+  "name": "erd",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@dbml/core": "2.5.3",
+    "@popperjs/core": "^2.11",
+    "@vue-flow/background": "1.2.0",
+    "@vue-flow/controls": "1.1.0",
+    "@vue-flow/core": "1.21.1",
+    "@vue-flow/minimap": "1.1.1",
+    "ace-builds": "^1.23",
+    "dagre": "^0.8.5",
+    "lodash-es": "4.17.21",
+    "pinia": "^2.1",
+    "typescript": "^4.9",
+    "vue": "^3.3",
+    "vue-router": "^4.2",
+    "vue-tsc": "^1.8",
+    "vue3-ace-editor": "^2.2.2"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash-es": "^4.17.7",
+    "@types/node": "^20.2",
+    "@vitejs/plugin-vue": "^4.2",
+    "unplugin-vue-components": "^0.25",
+    "vite": "^4.4",
+    "vite-plugin-compression": "0.5.1",
+    "vite-plugin-singlefile": "0.13.5"
+  }
+}
