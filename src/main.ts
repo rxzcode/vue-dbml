@@ -19,7 +19,7 @@ const router = createRouter({
         {
             name: 'view-page',
             path: '/view/',
-            component: () => import('@/coms/page/ViewPage.vue')
+            component: () => import('@/coms/pages/ViewPage.vue')
         },
         {
             name: 'otherwise',
