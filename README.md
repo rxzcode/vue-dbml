@@ -1,8 +1,8 @@
 # My Vue.js Project
 
-![Project Screenshot](public/screenshot.png)
+![Project Screenshot](./public/screenshot.png)
 
-A Simplize and opensource version of dbdiagram.io with features:
+A Simplelize and opensource version of dbdiagram.io with features:
 - DBML edit and save
 - DBML render with vue-flow
 - Autolayout with dagre - LR index
