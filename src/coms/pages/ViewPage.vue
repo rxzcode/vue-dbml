@@ -12,27 +12,10 @@ const state = reactive({
     flowFlag: Date.now(),
     nodes: [] as any,
     edges: [] as any,
-    dbmlContent: '' + erdStore.dbmlRaw,
-    yamlContent: `nodes:
-    public.countries:
-        data:
-            headerColor: red
-            tags: [sd]
-            fields:
-                code:
-                    tags: [pk]`
+    dbmlContent: '' + erdStore.dbmlRaw
 });
 
 const saveDbml = () => {
-    try {
-        erdStore.extraData = yaml.load(state.yamlContent, {
-            onWarning: console.warn,
-            json: true
-        });
-    } catch (e) {
-        alert('Custom settings yaml was not applied. Error in yaml');
-        throw e;
-    }
     try {
         parseDBMLToJSON.parse(state.dbmlContent);
     } catch (e) {
@@ -57,7 +40,6 @@ const initFlowData = () => {
     state.nodes = nodes;
     state.edges = edges;
     erdStore.applyExtraData(nodes, edges);
-    erdStore.initTags(nodes);
     state.flowFlag = Date.now();
 };
 initFlowData();
