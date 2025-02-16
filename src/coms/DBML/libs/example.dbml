@@ -1,25 +1,56 @@
+// This is demo database not use in real project
 Table follow {
-  following_user_id integer
-  followed_user_id integer
-  created_at timestamp
+    following_user_id integer
+    followed_user_id integer
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table role {
+    id integer [primary key]
+    title varchar
 }
 
 Table user {
-  id integer [primary key]
-  username varchar
-  role varchar
-  created_at timestamp
+    id integer [primary key]
+    username varchar
+    role_id varchar
+    created_at timestamp
+    updated_at timestamp
 }
 
 Table post {
-  id integer [primary key]
-  title varchar
-  body text [note: 'Content of the post']
-  user_id integer
-  status varchar
-  created_at timestamp
+    id integer [primary key]
+    title varchar
+    body text [note: 'Content of the post']
+    user_id integer
+    cate_id integer
+    tag_id integer
+    status varchar
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table tag {
+    id integer [primary key]
+    title varchar
+    status varchar
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table cate {
+    id integer [primary key]
+    title varchar
+    body text [note: 'Content of the cate']
+    status varchar
+    created_at timestamp
+    updated_at timestamp
 }
 
 Ref: post.user_id > user.id
 Ref: user.id < follow.following_user_id
 Ref: user.id < follow.followed_user_id
+Ref: role.id < user.role_id
+Ref: cate.id < post.cate_id
+Ref: tag.id < post.tag_id

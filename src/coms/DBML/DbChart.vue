@@ -58,7 +58,9 @@ const autoLayout = () => {
     const g = new dagre.graphlib.Graph();
     g.setGraph({ rankdir: 'LR' });
     g.setDefaultEdgeLabel(() => ({}));
-    nodes.value.forEach((node) => g.setNode(node.id, { width: 200, height: 200 }));
+    nodes.value.forEach((node) => {
+        return g.setNode(node.id, { width: 200, height:  35 * (Object.keys(node.data?.fields).length + 1) })
+    });
     edges.value.forEach((edge) => g.setEdge(edge.source, edge.target));
     dagre.layout(g);
     nodes.value = nodes.value.map((node) => {
