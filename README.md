@@ -47,7 +47,8 @@ A simplified and open-source alternative to **dbdiagram.io**, offering powerful 
 3. **License**:
    - This project is licensed under the MIT License. Please provide attribution to @rxzcode.
 
-# Extra - this repo is a module of DBML - CRUD GEN CODE - LOW CODE
+# Extra - this repo is a module of project
+- DBML - CRUD GEN CODE - LOW CODE
 - This use DBML - AI gen DBML - gen CODE for front end, back end (expressjs, vuejs)
 ![Crud Screenshot](./public/crud.png)
 ![Form Screenshot](./public/crud-form.png)
