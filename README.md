@@ -51,6 +51,7 @@ A simplified and open-source alternative to **dbdiagram.io**, offering powerful 
 - ZCODE - DBML - Crud generate and sync code - low code
 - This use DBML, AI gen DBML, gen CODE for front end, back end (expressjs, vuejs)
 
+![Crud Screenshot](./public/crud-dbml.png)
 ![Crud Screenshot](./public/crud.png)
 ![Form Screenshot](./public/crud-form.png)
 ![Setting Screenshot](./public/crud-setting.png)
